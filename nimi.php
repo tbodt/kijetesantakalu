@@ -38,7 +38,7 @@ $NIMI_PONA_O_SEWI = '
     mute_pona_pilin(pona, ike) desc
 ';
 
-if (!empty($_GET['nimi'])) {
+if (isset($_GET['nimi'])) {
     // mi o pana e wile alasa tawa ilo fts5 kepeken nasin nasa
     // ilo o pana e lipu ni: toki alasa la nimi wan ale li lon
     // mi poki e toki alasa tawa ilo la ni li kama ijo alasa wan. ale toki o lon insa nimi. wile ala
