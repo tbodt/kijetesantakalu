@@ -75,6 +75,7 @@ if (isset($_GET['nimi'])) {
         $SONA_SULI = $nimi_mute[0]['sona'];
     } else {
         $NIMI_SULI = $_GET['nimi'];
+        $SONA_SULI = 'nimi ni li lon ala';
     }
 }
 
