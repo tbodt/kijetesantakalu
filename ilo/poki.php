@@ -4,6 +4,7 @@ require_once 'ilo/ilonitaso.php';
 
 $poki = new PDO(NIMI_POKI, null, null, array(
     PDO::ATTR_PERSISTENT => true,
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 ));
 $poki->exec('pragma foreign_keys = on');
 $poki->exec('pragma journal_mode = wal');

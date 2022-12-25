@@ -1,5 +1,7 @@
 <?php
 
+require_once 'ilo/ilonitaso.php';
+
 date_default_timezone_set('UTC');
 
 function sitelen_tenpo($tenpo) {

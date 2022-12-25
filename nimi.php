@@ -38,14 +38,18 @@ $NIMI_PONA_O_SEWI = '
     mute_pona_pilin(pona, ike) desc
 ';
 
-if (isset($_GET['nimi'])) {
+if (!empty($_GET['nimi'])) {
     // mi o pana e wile alasa tawa ilo fts5 kepeken nasin nasa
     // ilo o pana e lipu ni: toki alasa la nimi wan ale li lon
     // mi poki e toki alasa tawa ilo la ni li kama ijo alasa wan. ale toki o lon insa nimi. wile ala
     // ni la mi o kipisi e toki tawa nimi o poki e ona ale o wan sin e ona kepeken nimi KIN AND.
     // toki ilo nasa ni li lukin kipisi lon nasin sama pi ilo kipisi unicode. ken suli la nasin ona li ante lili. taso ni li pakala suli ala li musi.
     preg_match_all('/[\pL\pN\p{Co}]+/u', $_GET['nimi'], $nimi_alasa);
-    $nimi_alasa = implode(" AND ", $nimi_alasa[0]);
+    $nimi_alasa = $nimi_alasa[0];
+    foreach ($nimi_alasa as &$nimi) {
+        $nimi = '"'. str_replace('"', '""', $nimi) .'"';
+    }
+    $nimi_alasa = implode(" AND ", $nimi_alasa);
     $nimi_mute = $poki->prepare("
         $O_KAMA_E_SONA_WILE
         $TAN_POKI
@@ -94,11 +98,11 @@ foreach ($nimi_mute as $nimi) {
         <p class="pilin">
         <input type="hidden" name="nanpa" value="<?= htmlentities($nimi['nanpa']) ?>">
         <button type="submit" name="pilin" value="pona"
-            <?= $nimi['pilin_mi'] === 1 ? ' disabled' : '' ?>>
+            <?= $nimi['pilin_mi'] == 1 ? ' disabled' : '' ?>>
             󱥔 <?= htmlentities($nimi['pona']) ?>
         </button>
         <button type="submit" name="pilin" value="ike"
-            <?= $nimi['pilin_mi'] === -1 ? ' disabled' : '' ?>>
+            <?= $nimi['pilin_mi'] == -1 ? ' disabled' : '' ?>>
             󱤍 <?= htmlentities($nimi['ike']) ?>
         </button>
     </form>

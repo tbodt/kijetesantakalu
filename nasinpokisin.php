@@ -33,7 +33,7 @@ end;
 
 create table pilin (
     nanpa_ilo string,
-    nanpa_jan references sijelo(nanpa),
+    nanpa_jan integer references sijelo(nanpa),
     pilin integer,
     nanpa_nimi integer references sona_nimi(nanpa) on delete cascade
 );
