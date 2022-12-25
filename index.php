@@ -1,0 +1,1 @@
+<?php include 'nimi.php'; ?>
