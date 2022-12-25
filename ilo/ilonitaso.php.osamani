@@ -1,0 +1,12 @@
+<?php
+
+define('NIMI_POKI', '');
+
+define('NIMI_LIPU', '');
+define('LUPA_LI_PANA_E_X_FORWARDED_FOR', false);
+
+define('SMTP_LA_ILO', '');
+define('SMTP_LA_NIMI', '');
+define('SMTP_LA_NANPA_KEN', '');
+define('SMTP_LA_PANA_LI_TAN', '');
+
