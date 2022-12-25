@@ -4,20 +4,6 @@ require_once 'ilo/poki.php';
 require_once 'ilo/sijelo.php';
 require_once 'ilo/ante.php';
 
-?>
-<?php include 'lipu/open.php'; ?>
-<title>nimi a</title>
-
-<style>
-.tan {
-    font-weight: bold;
-}
-</style>
-
-<main>
-
-<?php
-
 $O_KAMA_E_SONA_WILE = '
     select sona_nimi.nanpa, sona_nimi.nimi, sona, kepeken, tenpo,
         sijelo.nimi as nimi_jan,
@@ -64,10 +50,10 @@ if (isset($_GET['nimi'])) {
     $nimi_mute = $poki->prepare("
         $O_KAMA_E_SONA_WILE
         $TAN_POKI
-        where nimi_jan = ?
+        where nimi_jan = :nimi_jan
         order by $NIMI_PONA_O_SEWI
         ");
-    $nimi_mute->bindValue(1, $_GET['tan']);
+    $nimi_mute->bindValue('nimi_jan', $_GET['tan']);
 } else {
     $nimi_mute = $poki->prepare("
         $O_KAMA_E_SONA_WILE
@@ -81,6 +67,29 @@ if (isset($_GET['nimi'])) {
 $nimi_mute->bindValue('nanpa_ilo', $nanpa_ilo);
 $nimi_mute->bindValue('nanpa_jan', $nanpa_jan);
 $nimi_mute->execute();
+$nimi_mute = $nimi_mute->fetchAll();
+
+if (isset($_GET['nimi'])) {
+    if (isset($nimi_mute[0])) {
+        $NIMI_SULI = $nimi_mute[0]['nimi'];
+        $SONA_SULI = $nimi_mute[0]['sona'];
+    } else {
+        $NIMI_SULI = $_GET['nimi'];
+    }
+}
+
+?>
+<?php include 'lipu/open.php'; ?>
+
+<style>
+.tan {
+    font-weight: bold;
+}
+</style>
+
+<main>
+
+<?php
 
 $mute_nimi = 0;
 foreach ($nimi_mute as $nimi) {

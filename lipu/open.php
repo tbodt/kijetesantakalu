@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="tok">
 <meta charset="utf-8">
+<title><?= htmlentities($NIMI_SULI ?? 'lipu kijetesantakalu') ?><?= isset($NIMI_SULI) ? ' | lipu kijetesantakalu' : '' ?></title>
+<meta property="og:site_name" content="lipu kijetesantakalu">
+<?php if (isset($NIMI_SULI)) { ?>
+<meta property="og:title" content="<?= htmlentities($NIMI_SULI) ?>">
+<?php } ?>
+<?php if (isset($SONA_SULI)) { ?>
+<meta property="og:description" content="<?= htmlentities($SONA_SULI) ?>">
+<?php } ?>
+
 <meta name="viewport" content="width=device-width" />
 <style>
 * {

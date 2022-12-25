@@ -25,8 +25,7 @@ sina wile ala la kama pi lipu ni li nasa la o weka e ona.
         $lipu = ob_get_clean();
         o_pana_e_lipu($nimi_email, 'lipu kijetesantakalu la sina wile kepeken anu seme?', $lipu);
 ?>
-<?php include 'lipu/open.php'; ?>
-<title>sina</title>
+<?php $NIMI_SULI = 'sina'; include 'lipu/open.php'; ?>
 <main>
 ilo li pana e ijo wawa tawa sina kepeken nimi <?= htmlentities($nimi_email) ?>. o alasa lon poki lipu sina!
 <?php
@@ -98,8 +97,7 @@ if (isset($_SESSION['nanpa_sijelo']) && $_SERVER['REQUEST_METHOD'] == 'POST' && 
     }
 }
 ?>
-<?php include 'lipu/open.php'; ?>
-<title>sina</title>
+<?php $NIMI_SULI = 'sina'; include 'lipu/open.php'; ?>
 <main>
 
 <?php if (!isset($_SESSION['nanpa_sijelo'])) { ?>

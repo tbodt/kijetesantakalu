@@ -1,5 +1,4 @@
 <?php include 'lipu/open.php'; ?>
-<title>lipu kijetesantakalu</title>
 <main>
 
 <h1>lipu kijetesantakalu li seme?</h1>

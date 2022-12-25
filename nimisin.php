@@ -52,8 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
-<?php include 'lipu/open.php'; ?>
-<title>nimi sin</title>
+<?php $NIMI_SULI = 'nimi sin'; include 'lipu/open.php'; ?>
 <style>
 .nimi input, .nimi textarea {
     width: 100%;
