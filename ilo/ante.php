@@ -35,7 +35,8 @@ function sitelen_pi_weka_tenpo($weka) {
 
 function o_weka_e_weka_sitelen($sitelen) {
     // https://stackoverflow.com/a/4167053/1455016
-    return preg_replace('/^[\pZ\pC]+|[\pZ\pC]+$/u', '', $sitelen);
+    // taso sitelen pi nasin ucsur li lon nasin \pC la mi weka e ni
+    return preg_replace('/^[\pZ]+|[\pZ]+$/u', '', $sitelen);
 }
 
 function nanpa_pi_ilo_lukin() {
