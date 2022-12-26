@@ -100,6 +100,10 @@ header .suli-ken {
     border-radius: 1em;
 }
 
+.nimi .sona, .nimi .kepeken {
+    white-space: pre-line;
+}
+
 .kepeken {
     font-style: italic;
 }
