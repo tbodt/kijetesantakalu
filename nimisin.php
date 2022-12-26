@@ -11,6 +11,8 @@ $sona = '';
 $kepeken = '';
 $toki_pakala = array();
 
+var_dump($_POST);
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // jan li pana e nimi. o lukin.
     $nimi = $_POST['nimi'] ?? '';
@@ -22,19 +24,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $kepeken = o_weka_e_weka_sitelen($kepeken);
 
     // ken la pana li suli ike li lili ike
-    if (empty($nimi)) {
+    if (mb_strlen($nimi) == 0) {
         $toki_pakala[] = 'sina o pana e nimi';
     }
     if (mb_strlen($nimi) > 100) {
         $toki_pakala[] = 'nimi ni li suli ike';
     }
-    if (empty($sona)) {
+    if (mb_strlen($sona) == 0) {
         $toki_pakala[] = 'sina o pana e sona nimi';
     }
     if (mb_strlen($sona) > 500) {
         $toki_pakala[] = 'toki sona nimi li suli ike';
     }
-    if (empty($kepeken)) {
+    if (mb_strlen($kepeken) == 0) {
         $toki_pakala[] = 'sina o toki lili kepeken nimi';
     }
     if (mb_strlen($kepeken) > 500) {
