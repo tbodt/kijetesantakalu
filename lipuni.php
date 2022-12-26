@@ -5,7 +5,7 @@
 
 <p>
 toki pona la lipu nimi mute li lon.
-lipu wan li <a href="https://lipu-linku.github.com">lipu Linku</a>.
+lipu wan li <a href="https://lipu-linku.github.io">lipu Linku</a>.
 taso tenpo ale la jan pali li sona pona ala e ni:
 nimi seme o lon lipu? nimi seme o weka?
 nimi "xnopyt" o lon anu seme?
