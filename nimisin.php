@@ -11,8 +11,6 @@ $sona = '';
 $kepeken = '';
 $toki_pakala = array();
 
-var_dump($_POST);
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // jan li pana e nimi. o lukin.
     $nimi = $_POST['nimi'] ?? '';
