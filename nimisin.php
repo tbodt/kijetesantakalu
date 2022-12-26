@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (mb_strlen($sona) == 0) {
         $toki_pakala[] = 'sina o pana e sona nimi';
     }
-    if (mb_strlen($sona) > 500) {
+    if (mb_strlen($sona) > 1000) {
         $toki_pakala[] = 'toki sona nimi li suli ike';
     }
     if (mb_strlen($kepeken) == 0) {
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <p>
     <label for="sona">nimi li toki e seme?</label><br>
-    <textarea id="sona" name="sona" rows="4" required maxlength="500" placeholder="kijetesantakalu li soweli li pona ale"><?= htmlentities($sona) ?></textarea>
+    <textarea id="sona" name="sona" rows="4" required maxlength="1000" placeholder="kijetesantakalu li soweli li pona ale"><?= htmlentities($sona) ?></textarea>
 
     <p>
     <label for="kepeken">jan li kepeken nimi ni sama seme? o toki lili kepeken ona.</label><br>
