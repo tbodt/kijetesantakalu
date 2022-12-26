@@ -20,7 +20,7 @@ lipu ku li suli e nimi mute.
 
 <p>
 taso toki pona li pona li lili. nimi o mute nasa ala.
-ni la lipu li wile ala lon e nimi.
+ni la lipu Linku li wile ala lon e nimi.
 toki la nimi mute li weka.
 jan ala li awen kepeken.
 ken la nimi li musi lon tenpo wan taso.
