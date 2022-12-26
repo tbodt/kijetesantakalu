@@ -73,7 +73,7 @@ sina ken toki tawa mi kepeken ni:
 
 <h1>lipu li kepeken ilo seme?</h1>
 
-<p>o lukin e <a href="https://github.com/tbodt/lipu-kijetesantakalu">toki ilo lon ilo Kita</a>.
+<p>o lukin e <a href="https://github.com/tbodt/kijetesantakalu">toki ilo lon ilo Kita</a>.
 
 <p>mi kepeken toki ilo PHP. jan mute la ni li nasa. mi kepeken tan ni: pilin nasa pi jan ante li musi tawa mi.
 
