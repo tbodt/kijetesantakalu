@@ -109,8 +109,9 @@ if (isset($_SESSION['nanpa_sijelo']) && $_SERVER['REQUEST_METHOD'] == 'POST' && 
 <form method="post">
 <p>ilo Email la nimi sina li seme?
 <p><input type="email" required name="nimiilo" id="nimiilo" placeholder="jan@kulupu.ilo">
-<p><small>sina pana e nimi la ilo li pana e ijo wawa tawa ni. sina kepeken ijo wawa la ilo li kama sona e sina.</small>
 <p><input type="submit" value="o kama sona e mi">
+<p>sina pana e nimi la ilo li pana e <strong>ijo wawa</strong> tawa ni. sina kepeken ijo wawa la ilo li kama sona e sina.
+<p>ilo li <strong>awen len</strong> e nimi ni. mi lawa e ilo la mi ken lukin, taso jan ante ala li ken.
 </form>
 
 <?php exit(); } ?>
