@@ -16,7 +16,7 @@ if ($pilin === 'pona') {
 }
 
 [$nanpa_ilo, $nanpa_sijelo] = nimi_mi_pilin();
-$poki->prepare('insert or replace into pilin (nanpa_ilo, nanpa_jan, pilin, nanpa_nimi) values (?, ?, ?, ?)')
+$poki->prepare('insert or replace into pilin (nanpa_ilo, nanpa_jan, pilin, nanpa_nimi, tenpo) values (?, ?, ?, ?, strftime(\'%Y-%m-%dT%H:%M:%fZ\'))')
      ->execute([$nanpa_ilo, $nanpa_sijelo, $pilin, $_POST['nanpa']]);
 
 header('location: '.$_SERVER['HTTP_REFERER']);

@@ -42,6 +42,8 @@ create index pilin_la_nanpa_nimi on pilin(nanpa_nimi);
 
 PINI, <<<PINI
 update sona_nimi set tenpo = strftime('%Y-%m-%dT%H:%M:%fZ', tenpo);
+PINI, <<<PINI
+alter table pilin add column tenpo datetime;
 PINI
 ];
 
