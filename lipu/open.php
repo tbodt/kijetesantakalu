@@ -44,7 +44,7 @@ a:hover {
     text-decoration: underline;
 }
 
-input, button, textarea {
+input, button, select, textarea {
     font: inherit;
 }
 

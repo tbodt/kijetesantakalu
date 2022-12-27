@@ -20,9 +20,13 @@ $TAN_POKI = '
         from pilin group by nanpa_nimi
     ) on nanpa_nimi = sona_nimi.nanpa
 ';
-$NIMI_PONA_O_SEWI = '
-    mute_pona_pilin(pona, ike) desc
-';
+$NASIN_NANPA_WAN = [
+    'pona' => 'mute_pona_pilin(pona, ike) desc',
+    'sin' => 'julianday(tenpo) desc',
+];
+
+$nanpa_wan = $_GET['nanpawan'] ?? 'pona';
+$O_NANPA_WAN = $NASIN_NANPA_WAN[$nanpa_wan];
 
 if (isset($_GET['nimi'])) {
     // mi o pana e wile alasa tawa ilo fts5 kepeken nasin nasa
@@ -42,7 +46,7 @@ if (isset($_GET['nimi'])) {
         join sona_nimi_la_alasa as alasa on alasa.rowid = sona_nimi.nanpa
         where sona_nimi_la_alasa match :alasa
         order by mute_ante_nimi(sona_nimi.nimi, :toki_alasa),
-            $NIMI_PONA_O_SEWI
+            $O_NANPA_WAN
     ");
     $nimi_mute->bindValue('alasa', $nimi_alasa);
     $nimi_mute->bindValue('toki_alasa', $_GET['nimi']);
@@ -51,14 +55,17 @@ if (isset($_GET['nimi'])) {
         $O_KAMA_E_SONA_WILE
         $TAN_POKI
         where nimi_jan = :nimi_jan
-        order by $NIMI_PONA_O_SEWI
-        ");
+        order by $O_NANPA_WAN
+    ");
     $nimi_mute->bindValue('nimi_jan', $_GET['tan']);
 } else {
+    if ($nanpa_wan === 'pona') {
+        $O_NANPA_WAN = 'mute_pona_pilin(pona, ike) + random() / 9223372036854775808 * 0.3 desc';
+    }
     $nimi_mute = $poki->prepare("
         $O_KAMA_E_SONA_WILE
         $TAN_POKI
-        order by mute_pona_pilin(pona, ike) + random() / 9223372036854775808 * 0.3 desc
+        order by $O_NANPA_WAN
         limit 10
     ");
 }
@@ -78,6 +85,9 @@ if (isset($_GET['nimi'])) {
         $SONA_SULI = 'nimi ni li lon ala';
     }
 }
+if ($nanpa_wan === 'pona') {
+    unset($SONA_SULI);
+}
 
 ?>
 <?php include 'lipu/open.php'; ?>
@@ -86,11 +96,30 @@ if (isset($_GET['nimi'])) {
 .tan {
     font-weight: bold;
 }
+.e {
+    text-align: right;
+}
 </style>
 
 <main>
 
+<form>
 <?php
+foreach ($_GET as $nimi => $ijo) {
+    if ($nimi === 'nanpawan') { continue; }
+?>
+<input type="hidden" name="<?= htmlentities($nimi) ?>" value="<?= htmlentities($ijo) ?>">
+<?php } ?>
+<p align="right">
+nanpa wan o
+<select name="nanpawan" onchange="this.form.submit()">
+<option value="pona"<?= $nanpa_wan === 'pona' ? ' selected' : '' ?>>nimi pona</option>
+<option value="sin"<?= $nanpa_wan === 'sin' ? ' selected' : '' ?>>nimi sin</option>
+</select>
+<noscript><button type="submit">󱥄</button></noscript>
+</form>
+
+<?php 
 
 $mute_nimi = 0;
 foreach ($nimi_mute as $nimi) {
