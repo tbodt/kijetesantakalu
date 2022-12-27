@@ -23,6 +23,7 @@ $TAN_POKI = '
 $NASIN_NANPA_WAN = [
     'pona' => 'mute_pona_pilin(pona, ike) desc',
     'sin' => 'julianday(tenpo) desc',
+    'ike' => 'mute_pona_pilin(pona, ike) asc',
 ];
 
 $nanpa_wan = $_GET['nanpawan'] ?? 'pona';
@@ -111,10 +112,11 @@ foreach ($_GET as $nimi => $ijo) {
 <input type="hidden" name="<?= htmlentities($nimi) ?>" value="<?= htmlentities($ijo) ?>">
 <?php } ?>
 <p align="right">
-nanpa wan o
+nanpa wan o nimi
 <select name="nanpawan" onchange="this.form.submit()">
-<option value="pona"<?= $nanpa_wan === 'pona' ? ' selected' : '' ?>>nimi pona</option>
-<option value="sin"<?= $nanpa_wan === 'sin' ? ' selected' : '' ?>>nimi sin</option>
+<?php foreach (array_keys($NASIN_NANPA_WAN) as $nasin) { ?>
+<option<?= $nanpa_wan === $nasin ? ' selected' : '' ?>><?= $nasin ?></option>
+<?php } ?>
 </select>
 <noscript><button type="submit">󱥄</button></noscript>
 </form>
