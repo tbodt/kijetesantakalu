@@ -40,7 +40,9 @@ create table pilin (
 create unique index ijo_wan_la_pilin_wan on pilin(coalesce(nanpa_ilo, nanpa_jan), nanpa_nimi);
 create index pilin_la_nanpa_nimi on pilin(nanpa_nimi);
 
-PINI,
+PINI, <<<PINI
+update sona_nimi set tenpo = strftime('%Y-%m-%dT%H:%M:%fZ', tenpo);
+PINI
 ];
 
 $poki->beginTransaction();

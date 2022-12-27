@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // ale li pona. o pana.
     if (empty($toki_pakala)) {
-        $pana = $poki->prepare('insert into sona_nimi (nimi, sona, kepeken, tan_jan, tenpo) values (?, ?, ?, ?, current_timestamp)');
+        $pana = $poki->prepare('insert into sona_nimi (nimi, sona, kepeken, tan_jan, tenpo) values (?, ?, ?, ?, strftime(\'%Y-%m-%dT%H:%M:%fZ\'))');
         $pana->execute(array($nimi, $sona, $kepeken, $_SESSION['nanpa_sijelo']));
 
         header('location: nimi.php?'.http_build_query(['nimi' => $nimi]));
