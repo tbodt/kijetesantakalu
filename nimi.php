@@ -105,13 +105,16 @@ if ($nanpa_wan === 'pona') {
 <main>
 
 <form>
+<p style="display:flex">
+nimi <?= count($nimi_mute) ?> li lon
+<span class="suli-ken"></span>
+<span>
 <?php
 foreach ($_GET as $nimi => $ijo) {
     if ($nimi === 'nanpawan') { continue; }
 ?>
 <input type="hidden" name="<?= htmlentities($nimi) ?>" value="<?= htmlentities($ijo) ?>">
 <?php } ?>
-<p align="right">
 nanpa wan o nimi
 <select name="nanpawan" onchange="this.form.submit()">
 <?php foreach (array_keys($NASIN_NANPA_WAN) as $nasin) { ?>
@@ -119,14 +122,10 @@ nanpa wan o nimi
 <?php } ?>
 </select>
 <noscript><button type="submit">󱥄</button></noscript>
+</span>
 </form>
 
-<?php 
-
-$mute_nimi = 0;
-foreach ($nimi_mute as $nimi) {
-    $mute_nimi++;
-?>
+<?php foreach ($nimi_mute as $nimi) { ?>
 
 <section class="nimi">
     <h1><a href="/nimi.php?nimi=<?= htmlentities($nimi['nimi']) ?>"><?= htmlentities($nimi['nimi']) ?></a></h1>
@@ -152,7 +151,7 @@ foreach ($nimi_mute as $nimi) {
 <?php
 }
 
-if ($mute_nimi === 0) {
+if (count($nimi_mute) === 0) {
 ?>
 nimi ala li lon :(
 <?php } ?>

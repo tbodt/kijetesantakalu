@@ -84,7 +84,7 @@ header form {
     display: inline;
 }
 
-header .suli-ken {
+.suli-ken {
     flex: 1;
 }
 
