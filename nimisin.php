@@ -68,7 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <li>o pakala ala e jan kepeken toki.
 </ul>
 
-<p>o sona e ni: sina pana e sona la sina ken ala ante e ona lon tenpo kama. (taso sina ken weka e ona li ken pana sin.)
+<p>nimi li ken nimi wan taso ala. sina ken pana e sona tawa <strong>kulupu nimi!</strong>
+
+<p>o sona e ni: sina pana e sona la <strong>sina ken ala ante e ona</strong> lon tenpo kama. (taso sina ken weka e ona li ken pana sin.)
 
 <?php include 'lipu/tokipakala.php'; ?>
 
