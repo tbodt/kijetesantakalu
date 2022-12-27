@@ -58,7 +58,7 @@ if (isset($_GET['nimi'])) {
     $nimi_mute = $poki->prepare("
         $O_KAMA_E_SONA_WILE
         $TAN_POKI
-        order by mute_pona_pilin(pona, ike) + random() / 9223372036854775808 * 0.1 desc
+        order by mute_pona_pilin(pona, ike) + random() / 9223372036854775808 * 0.3 desc
         limit 10
     ");
 }
