@@ -106,7 +106,7 @@ if ($nanpa_wan === 'pona') {
 
 <form>
 <p style="display:flex">
-nimi <?= count($nimi_mute) ?> li lon
+<?php /* nimi <?= count($nimi_mute) ?> li lon */ ?>
 <span class="suli-ken"></span>
 <span>
 <?php
