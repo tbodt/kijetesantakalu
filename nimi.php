@@ -62,7 +62,8 @@ if (isset($_GET['nimi'])) {
     ");
     $nimi_mute->bindValue('nimi_jan', $_GET['tan']);
 } else {
-    if ($nanpa_wan === 'pona') {
+    if (!isset($_GET['nanpawan'])) {
+        $nanpa_wan = 'musi';
         $O_NANPA_WAN = 'pona_pi_nasin_nasa desc';
     }
     $nimi_mute = $poki->prepare("
@@ -110,6 +111,7 @@ if ($nanpa_wan === 'pona') {
 <p style="display:flex">
 <?php /* nimi <?= count($nimi_mute) ?> li lon */ ?>
 <span class="suli-ken"></span>
+
 <span>
 <?php
 foreach ($_GET as $nimi => $ijo) {
@@ -117,13 +119,19 @@ foreach ($_GET as $nimi => $ijo) {
 ?>
 <input type="hidden" name="<?= htmlentities($nimi) ?>" value="<?= htmlentities($ijo) ?>">
 <?php } ?>
+
+
 nimi
 <select name="nanpawan" onchange="this.form.submit()">
+<?php if ($nanpa_wan === 'musi') { ?>
+<option selected>musi</option>
+<?php } ?>
 <?php foreach (array_keys($NASIN_NANPA_WAN) as $nasin) { ?>
-<option<?= $nanpa_wan === $nasin ? ' selected' : '' ?>><?= $nasin ?></option>
+<option<?php if ($nanpa_wan === $nasin) { ?> selected<?php } ?>><?= $nasin ?></option>
 <?php } ?>
 </select>
 o nanpa wan
+
 <noscript><button type="submit">󱥄</button></noscript>
 </span>
 </form>
