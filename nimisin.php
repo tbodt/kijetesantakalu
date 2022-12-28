@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
-<?php $NIMI_SULI = 'nimi sin'; include 'lipu/open.php'; ?>
+<?php $NIMI_SULI = 'nimi sin'; require 'lipu/open.php'; ?>
 <style>
 .nimi input, .nimi textarea {
     width: 100%;
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <p>o sona e ni: sina pana e sona la <strong>sina ken ala ante e ona</strong> lon tenpo kama. (taso sina ken weka e ona li ken pana sin.)
 
-<?php include 'lipu/tokipakala.php'; ?>
+<?php require 'lipu/tokipakala.php'; ?>
 
 <form method="post">
 <section class="nimi">

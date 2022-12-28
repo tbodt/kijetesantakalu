@@ -8,7 +8,7 @@ $O_KAMA_E_SONA_WILE = '
     select sona_nimi.nanpa, sona_nimi.nimi, sona, kepeken, tenpo,
         sijelo.nimi as nimi_jan,
         ifnull(pona, 0) as pona, ifnull(ike, 0) as ike,
-        (select pilin from pilin where nanpa_ilo is :nanpa_ilo and nanpa_jan is :nanpa_jan and nanpa_nimi = sona_nimi.nanpa) as pilin_mi,
+        (select case pilin when 1 then \'pona\' when -1 then \'ike\' end from pilin where nanpa_ilo is :nanpa_ilo and nanpa_jan is :nanpa_jan and nanpa_nimi = sona_nimi.nanpa) as pilin_mi,
         mute_pona_pilin(pona, ike) as mute_pona,
         mute_pona_pilin(pona, ike) + random() / 9223372036854775808 * 1.0 as pona_pi_nasin_nasa
 ';
@@ -94,7 +94,7 @@ if ($nanpa_wan === 'pona') {
 }
 
 ?>
-<?php include 'lipu/open.php'; ?>
+<?php require 'lipu/open.php'; ?>
 
 <style>
 .tan {
@@ -145,16 +145,17 @@ o nanpa wan
     <p class="tan">tan <a href="/nimi.php?tan=<?= htmlentities($nimi['nimi_jan']) ?>"><?= htmlentities($nimi['nimi_jan']) ?></a>
     tan <?= htmlentities(sitelen_tenpo($nimi['tenpo'])) ?>
 
-    <form action="pilin.php" method="post">
+    <form action="pilin.php" method="post" data-pilin="<?= htmlentities($nimi['pilin_mi']) ?>">
+        <?php var_dump($nimi); ?>
         <p class="pilin">
         <input type="hidden" name="nanpa" value="<?= htmlentities($nimi['nanpa']) ?>">
         <button type="submit" name="pilin" value="pona"
-            <?= $nimi['pilin_mi'] == 1 ? ' disabled' : '' ?>>
-            󱥔 <?= htmlentities($nimi['pona']) ?>
+            <?= $nimi['pilin_mi'] == 'pona' ? ' disabled' : '' ?>>
+            󱥔 <span class="pona"><?= htmlentities($nimi['pona']) ?></span>
         </button>
         <button type="submit" name="pilin" value="ike"
-            <?= $nimi['pilin_mi'] == -1 ? ' disabled' : '' ?>>
-            󱤍 <?= htmlentities($nimi['ike']) ?>
+            <?= $nimi['pilin_mi'] == 'ike' ? ' disabled' : '' ?>>
+            󱤍 <span class="ike"><?= htmlentities($nimi['ike']) ?></span>
         </button>
         <?php if (isset($_GET['lukininsa'])) { ?>
         <?= $nimi['mute_pona'] ?>
@@ -170,3 +171,37 @@ if (count($nimi_mute) === 0) {
 ?>
 nimi ala li lon :(
 <?php } ?>
+
+<script>
+for (let lipuPana of document.querySelectorAll('form[data-pilin]')) {
+    lipuPana.addEventListener('submit', (w) => {
+        w.preventDefault();
+        let pilin = lipuPana.getAttribute('data-pilin');
+        let nenaPona = lipuPana.querySelector('.pona');
+        let nenaIke = lipuPana.querySelector('.ike');
+        let [mutePona, muteIke] = [nenaPona, nenaIke].map(n => +n.innerText);
+        if (pilin === 'pona')
+            nenaPona.innerText--;
+        else if (pilin === 'ike')
+            nenaIke.innerText--;
+        let pilinSin = w.submitter.value;
+        lipuPana.setAttribute('data-pilin', pilinSin);
+        if (pilinSin === 'pona')
+            nenaPona.innerText++;
+        else if (pilinSin === 'ike')
+            nenaIke.innerText++;
+        nenaPona.parentElement.disabled = nenaIke.parentElement.disabled = false;
+        if (pilinSin === 'pona')
+            nenaPona.parentElement.disabled = true;
+        else if (pilinSin = 'ike')
+            nenaIke.parentElement.disabled = true;
+
+        let ijoPana = new FormData(lipuPana);
+        ijoPana.append('pilin', pilinSin);
+        fetch('/pilin.php', {
+            method: 'POST',
+            body: ijoPana,
+        }).catch(console.error);
+    });
+}
+</script>

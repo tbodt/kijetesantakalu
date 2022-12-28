@@ -22,7 +22,7 @@ if (isset($_POST['wekaala'])) {
 if ($nimi !== false && isset($_POST['weka'])) {
     $poki->prepare('delete from sona_nimi where nanpa = ? and tan_jan = ?')->execute([$_POST['nanpa'], $_SESSION['nanpa_sijelo']]);
 ?>
-<?php $NIMI_SULI = 'nimi li weka'; include 'lipu/open.php'; ?>
+<?php $NIMI_SULI = 'nimi li weka'; require 'lipu/open.php'; ?>
 <main>
 <p>nimi <strong><?= htmlentities($nimi['nimi']) ?></strong> la sona li weka.
 <p><a href="/sijelo.php">o lukin sin e ijo sina</a>
@@ -30,7 +30,7 @@ if ($nimi !== false && isset($_POST['weka'])) {
     exit();
 }
 ?>
-<?php $NIMI_SULI = 'nimi o weka ala weka'; include 'lipu/open.php'; ?>
+<?php $NIMI_SULI = 'nimi o weka ala weka'; require 'lipu/open.php'; ?>
 <main>
 
 <form method="post">

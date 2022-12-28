@@ -1,4 +1,4 @@
-<?php include 'lipu/open.php'; ?>
+<?php require 'lipu/open.php'; ?>
 <main>
 
 <h1>lipu kijetesantakalu li seme?</h1>

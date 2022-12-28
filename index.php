@@ -1,1 +1,1 @@
-<?php include 'nimi.php'; ?>
+<?php require 'nimi.php'; ?>
