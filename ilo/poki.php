@@ -15,7 +15,6 @@ function mute_pona_pilin($pona, $ike) {
         return 0;
     }
     $z = 1.96;
-    $phat = $pona/($pona+$ike);
     return (
         ($pona + $z*$z/2) / ($pona + $ike)
         - $z * sqrt(
@@ -24,5 +23,17 @@ function mute_pona_pilin($pona, $ike) {
     ) / (1 + $z*$z / ($pona + $ike));
 }
 
+function ike_sona_pi_mute_pilin($pona, $ike) {
+    // https://www.evanmiller.org/how-not-to-sort-by-average-rating.html
+    if ($pona + $ike == 0) {
+        return 0;
+    }
+    $z = 1.96;
+    return $z * sqrt(
+        ($pona * $ike) / ($pona + $ike) + $z*$z/4
+    ) / ($pona+$ike);
+}
+
 $poki->sqliteCreateFunction('mute_ante_nimi', 'levenshtein', 2, PDO::SQLITE_DETERMINISTIC);
 $poki->sqliteCreateFunction('mute_pona_pilin', 'mute_pona_pilin', 2, PDO::SQLITE_DETERMINISTIC);
+$poki->sqliteCreateFunction('ike_sona_pi_mute_pilin', 'ike_sona_pi_mute_pilin', 2, PDO::SQLITE_DETERMINISTIC);
