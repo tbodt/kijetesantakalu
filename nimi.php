@@ -146,7 +146,6 @@ o nanpa wan
     tan <?= htmlentities(sitelen_tenpo($nimi['tenpo'])) ?>
 
     <form action="pilin.php" method="post" data-pilin="<?= htmlentities($nimi['pilin_mi']) ?>">
-        <?php var_dump($nimi); ?>
         <p class="pilin">
         <input type="hidden" name="nanpa" value="<?= htmlentities($nimi['nanpa']) ?>">
         <button type="submit" name="pilin" value="pona"
