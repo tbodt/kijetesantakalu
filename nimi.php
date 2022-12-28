@@ -8,7 +8,9 @@ $O_KAMA_E_SONA_WILE = '
     select sona_nimi.nanpa, sona_nimi.nimi, sona, kepeken, tenpo,
         sijelo.nimi as nimi_jan,
         ifnull(pona, 0) as pona, ifnull(ike, 0) as ike,
-        (select pilin from pilin where nanpa_ilo is :nanpa_ilo and nanpa_jan is :nanpa_jan and nanpa_nimi = sona_nimi.nanpa) as pilin_mi
+        (select pilin from pilin where nanpa_ilo is :nanpa_ilo and nanpa_jan is :nanpa_jan and nanpa_nimi = sona_nimi.nanpa) as pilin_mi,
+        mute_pona_pilin(pona, ike) as mute_pona,
+        mute_pona_pilin(pona, ike) + random() / 9223372036854775808 * 1.0 as pona_pi_nasin_nasa
 ';
 $TAN_POKI = '
     from sona_nimi
@@ -21,9 +23,9 @@ $TAN_POKI = '
     ) on nanpa_nimi = sona_nimi.nanpa
 ';
 $NASIN_NANPA_WAN = [
-    'pona' => 'mute_pona_pilin(pona, ike) desc',
+    'pona' => 'mute_pona desc',
     'sin' => 'julianday(tenpo) desc',
-    'ike' => 'mute_pona_pilin(pona, ike) asc',
+    'ike' => 'mute_pona asc',
 ];
 
 $nanpa_wan = $_GET['nanpawan'] ?? 'pona';
@@ -61,7 +63,7 @@ if (isset($_GET['nimi'])) {
     $nimi_mute->bindValue('nimi_jan', $_GET['tan']);
 } else {
     if ($nanpa_wan === 'pona') {
-        $O_NANPA_WAN = 'mute_pona_pilin(pona, ike) + random() / 9223372036854775808 * 0.3 desc';
+        $O_NANPA_WAN = 'pona_pi_nasin_nasa desc';
     }
     $nimi_mute = $poki->prepare("
         $O_KAMA_E_SONA_WILE
@@ -115,12 +117,13 @@ foreach ($_GET as $nimi => $ijo) {
 ?>
 <input type="hidden" name="<?= htmlentities($nimi) ?>" value="<?= htmlentities($ijo) ?>">
 <?php } ?>
-nanpa wan o nimi
+nimi
 <select name="nanpawan" onchange="this.form.submit()">
 <?php foreach (array_keys($NASIN_NANPA_WAN) as $nasin) { ?>
 <option<?= $nanpa_wan === $nasin ? ' selected' : '' ?>><?= $nasin ?></option>
 <?php } ?>
 </select>
+o nanpa wan
 <noscript><button type="submit">󱥄</button></noscript>
 </span>
 </form>
@@ -145,6 +148,10 @@ nanpa wan o nimi
             <?= $nimi['pilin_mi'] == -1 ? ' disabled' : '' ?>>
             󱤍 <?= htmlentities($nimi['ike']) ?>
         </button>
+        <?php if (isset($_GET['lukininsa'])) { ?>
+        <?= $nimi['mute_pona'] ?>
+        <?= $nimi['pona_pi_nasin_nasa'] ?>
+        <?php } ?>
     </form>
 </section>
 
