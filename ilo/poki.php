@@ -2,7 +2,7 @@
 
 require_once 'ilo/ilonitaso.php';
 
-$poki = new PDO(NIMI_POKI, null, null, array(
+$GLOBALS['poki'] = new PDO(NIMI_POKI, null, null, array(
     PDO::ATTR_PERSISTENT => true,
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 ));
@@ -37,3 +37,8 @@ function ike_sona_pi_mute_pilin($pona, $ike) {
 $poki->sqliteCreateFunction('mute_ante_nimi', 'levenshtein', 2, PDO::SQLITE_DETERMINISTIC);
 $poki->sqliteCreateFunction('mute_pona_pilin', 'mute_pona_pilin', 2, PDO::SQLITE_DETERMINISTIC);
 $poki->sqliteCreateFunction('ike_sona_pi_mute_pilin', 'ike_sona_pi_mute_pilin', 2, PDO::SQLITE_DETERMINISTIC);
+
+enum WawaLawa: int {
+    case Ala = 0;
+    case Lawa = 1;
+}

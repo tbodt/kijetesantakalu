@@ -44,6 +44,8 @@ PINI, <<<PINI
 update sona_nimi set tenpo = strftime('%Y-%m-%dT%H:%M:%fZ', tenpo);
 PINI, <<<PINI
 alter table pilin add column tenpo datetime;
+PINI, <<<PINI
+alter table sijelo add column lawa integer default 0;
 PINI
 ];
 

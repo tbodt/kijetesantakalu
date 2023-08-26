@@ -1,5 +1,7 @@
 <?php
 
+require_once 'ilo/poki.php';
+
 assert(session_status() === PHP_SESSION_NONE);
 session_start([
     'gc_maxlifetime' => 14 * 24 * 60 * 60,
@@ -9,8 +11,15 @@ session_start([
 ]);
 
 function o_sijelo() {
+    global $poki;
+    global $sijelo;
     if (isset($_SESSION['nanpa_sijelo'])) {
-        return;
+        $alasa_sijelo = $poki->prepare('select * from sijelo where nanpa = ?');
+        $alasa_sijelo->execute([$_SESSION['nanpa_sijelo']]);
+        $GLOBALS['sijelo'] = $alasa_sijelo->fetch();
+        if ($sijelo !== false) {
+            return;
+        }
     }
     header('location: /sijelo.php');
     exit();
