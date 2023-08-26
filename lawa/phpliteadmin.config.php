@@ -7,12 +7,12 @@ require_once 'ilo/poki.php';
 // jan lawa taso o ken kepeken wawa sewi ni!
 
 o_sijelo();
-if ($sijelo['lawa'] !== WawaLawa::Lawa->value) {
+if ($sijelo['lawa'] !== WawaLawa::LAWA) {
     die();
 }
 
 $mu_sqlite = 'sqlite:';
-if (!str_starts_with(NIMI_POKI, $mu_sqlite)) {
+if (strpos(NIMI_POKI, $mu_sqlite) !== 0) {
     die();
 }
 $nimi_poki = substr(NIMI_POKI, strlen($mu_sqlite));

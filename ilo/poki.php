@@ -38,7 +38,7 @@ $poki->sqliteCreateFunction('mute_ante_nimi', 'levenshtein', 2, PDO::SQLITE_DETE
 $poki->sqliteCreateFunction('mute_pona_pilin', 'mute_pona_pilin', 2, PDO::SQLITE_DETERMINISTIC);
 $poki->sqliteCreateFunction('ike_sona_pi_mute_pilin', 'ike_sona_pi_mute_pilin', 2, PDO::SQLITE_DETERMINISTIC);
 
-enum WawaLawa: int {
-    case Ala = 0;
-    case Lawa = 1;
+interface WawaLawa {
+    const ALA = 0;
+    const LAWA = 1;
 }
