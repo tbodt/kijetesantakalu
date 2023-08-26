@@ -7,7 +7,7 @@ require_once 'ilo/poki.php';
 // jan lawa taso o ken kepeken wawa sewi ni!
 
 o_sijelo();
-if ($sijelo['lawa'] !== WawaLawa::LAWA) {
+if ((int) $sijelo['lawa'] !== WawaLawa::LAWA) {
     die();
 }
 
