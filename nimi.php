@@ -145,7 +145,7 @@ o nanpa wan
     <p class="tan">tan <a href="/nimi.php?tan=<?= htmlentities($nimi['nimi_jan']) ?>"><?= htmlentities($nimi['nimi_jan']) ?></a>
     tan <?= htmlentities(sitelen_tenpo($nimi['tenpo'])) ?>
 
-    <form action="pilin.php" method="post" data-pilin="<?= htmlentities($nimi['pilin_mi']) ?>">
+    <form action="pilin.php" method="post" data-pilin="<?= isset($nimi['pilin_mi']) ? htmlentities($nimi['pilin_mi']) : '' ?>">
         <p class="pilin">
         <input type="hidden" name="nanpa" value="<?= htmlentities($nimi['nanpa']) ?>">
         <button type="submit" name="pilin" value="pona"
