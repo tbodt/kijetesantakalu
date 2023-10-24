@@ -61,7 +61,7 @@ ilo li pana e ijo wawa tawa sina kepeken nimi <?= htmlentities($nimi_email) ?>. 
             header('location: '.$_SERVER['SCRIPT_NAME']);
             exit();
         } else {
-            $toki_pakala[] = "toki wawa ni li pakala. o lukin pali sin.";
+            $toki_pakala[] = "toki wawa ni li pakala. o lukin pali sin. pakala li ken tan ni: sina pana e nimi pi ilo Email lon ilo wan li kepeken toki wawa lon ilo ante.";
         }
     }
 }
